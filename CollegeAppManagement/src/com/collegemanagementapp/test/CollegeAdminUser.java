@@ -28,18 +28,7 @@ public class CollegeAdminUser {
 			break;
 		
 		}
-//		while(!(collegeManagementApp.getAdminName().matches(adminNamePsna)))
-//		{
-//			System.err.println("Enter the correct admin name:");
-//			collegeManagementApp.setAdminName(s.next());
-//			
-//		}
-//		while(!collegeManagementApp.getAdminPassword().matches(adminPasswordPsna))
-//		{
-//			System.err.println("Enter the correct admin password:");
-//			collegeManagementApp.setAdminPassword(s.next());
-//		}
-		
+	
 		else
 		{
 			System.out.println("please enter valid admin name and password");
