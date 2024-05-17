@@ -12,11 +12,11 @@ public class TestCollegemainBody {
 		CollegeManagementApp collegeManage=new CollegeManagementApp();
 		CollegeApp collegeApp=new CollegeApp();
 		System.out.println("---COLLEGE MANAGEMENT APP---");
-		System.out.println("select \n 1.admin\n 2.user\n 3.exit");
+		System.out.println("Select \n 1.Admin\n 2.User\n 3.Exit");
 		collegeManage.selectOption=scanner.nextInt();
 		if(collegeManage.selectOption<0)
 		{
-			System.out.println("select \n 1.admin\n 2.user\n 3.exit");
+			System.out.println("Select \n 1.Admin\n 2.User\n 3.Exit");
 			collegeManage.selectOption=scanner.nextInt();
 		}
 		while(true)
@@ -33,7 +33,7 @@ public class TestCollegemainBody {
 				return;
 			case 3:
 				System.out.println("Exited sucessfully");
-				System.out.println("select \n 1.admin\n 2.user\n 3.exit");
+				System.out.println("select \n 1.Admin\n 2.User\n 3.Exit");
 				collegeManage.selectOption=scanner.nextInt();
 				
 			

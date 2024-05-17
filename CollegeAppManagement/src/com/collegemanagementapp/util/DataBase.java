@@ -13,7 +13,6 @@ import com.mysql.cj.jdbc.result.ResultSetMetaData;
 public class DataBase 
 {
 	
-    
         
         public static void update(int rollNo,int percentage,int paidFees,String userName ) throws ClassNotFoundException,SQLException
         {
@@ -107,8 +106,7 @@ public class DataBase
         	PreparedStatement ps=connection.prepareStatement(query);
         	ps.setString(1, adminName);
         	ps.setString(2, adminPassword);
-        	ResultSet rs=ps.executeQuery();
-        	
+            ResultSet rs=ps.executeQuery();
         	if(!rs.next())
         	{
         		System.out.println("username and password doesn't match");
@@ -116,7 +114,7 @@ public class DataBase
         	}
         	else 
         	{
-    
+                System.out.println("username and password matches");
         		return true;
         		
         	}

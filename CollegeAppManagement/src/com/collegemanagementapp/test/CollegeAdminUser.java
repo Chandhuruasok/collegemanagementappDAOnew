@@ -61,7 +61,6 @@ public class CollegeAdminUser {
 				   System.out.println("select option to add features(1.Placement 2.Ranking 3.companies)");
 				    o=s.nextInt();
 			   }
-			   
 			   switch(o)
 			   {
 			   case 1:
@@ -99,6 +98,7 @@ public class CollegeAdminUser {
 				   System.out.println("Total number of companies visited at our college for current year:"+company);
 				   System.out.println("---Thank you features are updated---");
 				   break;
+				   
 			   }
 			   
 			   break;
