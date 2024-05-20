@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.collegemanagementapp.dao.CollegeApp;
 import com.collegemanagementapp.dao.CollegeAppImplement;
 import com.collegemanagementapp.model.CollegeManagementApp;
+import com.collegemanagementapp.model.StudentDetails;
 import com.collegemanagementapp.util.DataBase;
 public class CollegeAdminUser {
 	
@@ -40,14 +41,15 @@ public class CollegeAdminUser {
 		{
 			CollegeAppImplement abstractextend=new CollegeAppImplement();
 			CollegeManagementApp collegeManagementApp=new CollegeManagementApp();
+			StudentDetails details=new  StudentDetails();
 		abstractextend.welcome();
 		System.out.println("------------    Welcome Admin ------------");
 		System.out.println("------------ LOGIN SUCCESSFUL ------------");
-		System.out.println("whether you need to add extra features(1.yes/2.no/3.delete data from database):");
+		System.out.println("whether you need to add extra features(1.yes \n 2.no \n 3.insert data into database \n 4.update data from database \n 5.delete data from database):");
 		int option=s.nextInt();
 		if(option<0)
 		{
-			System.out.println("whether you need to add extra features(1.yes/2.no/3.delete data from database):");
+			System.out.println("whether you need to add extra features(1.yes \n 2.no \n 3.insert data into database \n 4.update data from database \n 5.delete data from database):");
 			option=s.nextInt();
 		}
 		switch(option)
@@ -106,29 +108,112 @@ public class CollegeAdminUser {
 			   System.out.println("---Thank you No features are added---");
 			   break;
 		   case 3:
-			   System.out.println("delete any datas from database:");
-			   System.out.println("please enter the roll number to delete from the database:");
-			   collegeManagementApp.rollNo=s.nextInt();
-			   if(collegeManagementApp.rollNo<0)
+			   System.out.println("insert any data into database:");
+			   System.out.println("Please enter the roll number to insert into database:");
+			   details.rollNumber=s.nextInt();
+			   if(details.rollNumber<0)
 			   {
-				   System.err.println("please enter the roll number to delete from the database:");
-				   collegeManagementApp.rollNo=s.nextInt();
+				   System.err.println("Please enter the roll number again to insert into database:");
+				   details.rollNumber=s.nextInt(); 
 			   }
-			   collegeManagementApp.setRollNo( collegeManagementApp.rollNo);
-			   DataBase.delete( collegeManagementApp.getRollNo());
+			   details.setRollNumber(details.rollNumber);
+			   System.out.println("Please enter the  student name to insert into database:");
+			   details.studentName=s.next();
+			   details.setStudentName(details.studentName);
+			   System.out.println("Please enter the course to insert into database:");
+			   details.course=s.next();
+			   details.setCourse(details.course);
+			   System.out.println("Please enter the department to insert into database:");
+			   details.department=s.next();
+			   details.setDepartment(details.department);
+			   System.out.println("Please enter the year of pursuing to insert into database:");
+			   details.yearOfPursuing=s.next();
+			   details.setYearOfPursuing(details.yearOfPursuing);
+			   System.out.println("Please enter the attendance percentage to insert into database:");
+			   details.attendancePercentage=s.nextInt();
+			   if(details.attendancePercentage<0)
+			   {
+				   System.err.println("Please enter the attendance percentage again to insert into database:");
+				   details.attendancePercentage=s.nextInt(); 
+			   }
+			   details.setAttendancePercentage(details.attendancePercentage);
+			   System.out.println("Please enter the remaining college fees to insert into database:");
+			   details.remainingCollegeFees=s.nextLong();
+			   details.setRemainingCollegeFees(details.remainingCollegeFees);
+			   System.out.println("Please enter the remaining book fees to insert into database:");
+			   details.remainingBookFees=s.nextLong();
+			   details.setRemainingBookFees(details.remainingBookFees);
+			   System.out.println("Please enter the remaining exam fees to insert into database:");
+			   details.remainingExamFees=s.nextInt();
+			   details.setRemainingExamFees(details.remainingExamFees);
+			   DataBase.insertStudent(details.getRollNumber(),details.getStudentName(), details.getCourse(), details.getDepartment(),details.getYearOfPursuing(), details.getAttendancePercentage(), details.getRemainingCollegeFees(), details.getRemainingBookFees(),details.getRemainingExamFees());	
 			   break;
-		}
-		
+		  case 4:
+			   System.out.println("update any data into database:");
+			   System.out.println("Please enter the roll number to update into database:");
+			   details.rollNumber=s.nextInt();
+			   if(details.rollNumber<0)
+			   {
+				   System.err.println("Please enter the roll number again to update into database:");
+				   details.rollNumber=s.nextInt(); 
+			   }
+			   details.setRollNumber(details.rollNumber);
+			   System.out.println("Please enter the  student name to update into database:");
+			   details.studentName=s.next();
+			   details.setStudentName(details.studentName);
+			   System.out.println("Please enter the course to update into database:");
+			   details.course=s.next();
+			   details.setCourse(details.course);
+			   System.out.println("Please enter the department to update into database:");
+			   details.department=s.next();
+			   details.setDepartment(details.department);
+			   System.out.println("Please enter the year of pursuing to update into database:");
+			   details.yearOfPursuing=s.next();
+			   details.setYearOfPursuing(details.yearOfPursuing);
+			   System.out.println("Please enter the attendance percentage to update into database:");
+			   details.attendancePercentage=s.nextInt();
+			   if(details.attendancePercentage<0)
+			   {
+				   System.err.println("Please enter the attendance percentage again to update into database:");
+				   details.attendancePercentage=s.nextInt(); 
+			   }
+			   details.setAttendancePercentage(details.attendancePercentage);
+			   System.out.println("Please enter the remaining college fees to update into database:");
+			   details.remainingCollegeFees=s.nextLong();
+			   details.setRemainingCollegeFees(details.remainingCollegeFees);
+			   System.out.println("Please enter the remaining book fees to update into database:");
+			   details.remainingBookFees=s.nextLong();
+			   details.setRemainingBookFees(details.remainingBookFees);
+			   System.out.println("Please enter the remaining exam fees to update into database:");
+			   details.remainingExamFees=s.nextInt();
+			   details.setRemainingExamFees(details.remainingExamFees);
+			   DataBase.updateStudent(details.getRollNumber(),details.getStudentName(), details.getCourse(), details.getDepartment(),details.getYearOfPursuing(), details.getAttendancePercentage(), details.getRemainingCollegeFees(), details.getRemainingBookFees(),details.getRemainingExamFees());		
+			   break;
+		  case 5:
+			  System.out.println("delete any data from database:");
+			   System.out.println("Please enter the roll number to delete from database:");
+			   details.rollNumber=s.nextInt();
+			   if(details.rollNumber<0)
+			   {
+				   System.err.println("Please enter the roll number again to delete from database:");
+				   details.rollNumber=s.nextInt(); 
+			   }
+			   details.setRollNumber(details.rollNumber);
+			   DataBase.deleteStudent(details.getRollNumber());
+			   break;
+			default:
+				System.out.println("Enter correct choice");
 		
 		abstractextend.thankYou();
+		}
 		
-	}
-		
+		}	
 	public static void psnaUser() throws ClassNotFoundException, SQLException
 	{
 		CollegeManagementApp cm=new CollegeManagementApp();
 		CollegeAppImplement abstractextend=new CollegeAppImplement();
 		TestRollNumber testRollNumber=new TestRollNumber();
+		StudentDetails student=new StudentDetails();
 	    Scanner scan=new Scanner(System.in);
 	    String userNamePsna="^[a-zA-Z]{4,}$";
 		String userPasswordPsna="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$";
@@ -222,58 +307,28 @@ public class CollegeAdminUser {
 	    }
 	   
 		System.out.println("---Welcome User---");
-		System.out.println("enter your roll number:");
 		
-		int rollNo=scan.nextInt();
-		if(rollNo<0)
-		{
-			System.err.println("Enter your roll number:");
-			rollNo=scan.nextInt();
-		}
-		
-		System.out.println("Enter your attendance percentage:");
-		int percent=scan.nextInt();
-		if(percent<0)
-		{
-			System.err.println("Enter your attendance percentage:");
-			 percent=scan.nextInt();
-		}
-		if(percent>70)
-		{
-			System.out.println("you are eligible to write the exam");
-		}
-		else
-		{
-			System.out.println("pay Rs.100 to attend the exam");
-		}
-		
-		System.out.println("Enter the college fees you have paid already:");
-		int paidFees=scan.nextInt();
-		if(paidFees<0)
-		{
-			System.err.println("Enter the college fees you have paid already:");
-			paidFees=scan.nextInt();
-		}
-		CollegeApp.CollegeDetails(rollNo,paidFees);
-		System.out.println("select 1.insert\n 2.update:");
-		int choice=scan.nextInt();
-		if(choice<0)
-		{
-			System.out.println("select 1.insert\n 2.update:");
-			choice=scan.nextInt();
-		}
-		switch(choice)
+		System.out.println("Enter the choice 1.view student details \n 2.pay college fees");
+		cm.selectOption=scan.nextInt();
+		switch(cm.selectOption)
 		{
 		case 1:
-			DataBase.insert(rollNo, percent, paidFees,cm.userName2);
-			break;
+			System.out.println("Enter the roll number:");
+			student.rollNumber=scan.nextInt();
+			student.setRollNumber(student.rollNumber);
+		DataBase.studentDetails(student.getRollNumber());
+		break;
 		case 2:
-			DataBase.update(rollNo, percent,paidFees,cm.getUserName2());
+			System.out.println("Enter the roll number:");
+			student.rollNumber=scan.nextInt();
+			student.setRollNumber(student.rollNumber);
+			System.out.println("Enter the student name:");
+			student.studentName=scan.next();
+			student.setStudentName(student.studentName);
+			System.out.println("Enter the college fees you wish to pay:");
+			long fees=scan.nextLong();
+			DataBase.updateFees(student.getRollNumber(),student.getStudentName() ,fees);
 			break;
-		
-		
-			default:
-				System.out.println("wrong choice");
 		}
 		abstractextend.thankYou();		
 	}
