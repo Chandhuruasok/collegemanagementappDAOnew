@@ -39,70 +39,24 @@ public class CollegeAdminUser {
 	}
 		public static void admin() throws ClassNotFoundException, SQLException
 		{
-			CollegeAppImplement abstractextend=new CollegeAppImplement();
+			CollegeAppImplement interfaceExtend=new CollegeAppImplement();
 			CollegeManagementApp collegeManagementApp=new CollegeManagementApp();
 			StudentDetails details=new  StudentDetails();
-		abstractextend.welcome();
+		interfaceExtend.welcome();
 		System.out.println("------------    Welcome Admin ------------");
 		System.out.println("------------ LOGIN SUCCESSFUL ------------");
-		System.out.println("whether you need to add extra features(1.yes \n 2.no \n 3.insert data into database \n 4.update data from database \n 5.delete data from database):");
+		System.out.println("whether you need to add extra features(1.college features \n 2.no \n 3.insert student data into database \n 4.update student data from database \n 5.delete student data from database):");
 		int option=s.nextInt();
 		if(option<0)
 		{
-			System.out.println("whether you need to add extra features(1.yes \n 2.no \n 3.insert data into database \n 4.update data from database \n 5.delete data from database):");
+			System.out.println("whether you need to add extra features(1.college features \n 2.no \n 3.insert data into database \n 4.update student data from database \n 5.delete student data from database):");
 			option=s.nextInt();
 		}
 		switch(option)
 		{
 		   case 1:
 			   System.out.println("---Features can be added---");
-			   System.out.println("select option to add features(1.Placement 2.Ranking 3.companies)");
-			   int o=s.nextInt();
-			   if(o<0)
-			   {
-				   System.out.println("select option to add features(1.Placement 2.Ranking 3.companies)");
-				    o=s.nextInt();
-			   }
-			   switch(o)
-			   {
-			   case 1:
-				   System.out.println("please enter the current year overall placement percentage:");
-				   double percent=s.nextDouble();
-				   if(percent<0)
-				   {
-					   System.err.println("please enter the current year overall placement percentage:");
-					   percent=s.nextDouble();
-					  
-				   }
-				   System.out.println("current overall placement percentage of our college is:"+percent);
-				   System.out.println("---Thank you features are updated---");
-				   break;
-			   case 2:
-				   System.out.println("please enter the updated new ranking of the college:");
-				   int rank=s.nextInt();
-				   if(rank<0)
-				   {
-					   System.err.println("please enter the  updated new ranking of the college:");
-					   rank=s.nextInt();
-					  
-				   }
-				   System.out.println("current ranking of our college is:"+rank);
-				   System.out.println("---Thank you features are updated---");
-				   break;
-			   case 3:
-				   System.out.println("please enter the total number of companies visited at our college:");
-				   int company=s.nextInt();
-				   if(company<0)
-				   {
-					   System.err.println("please enter the total number of companies visited at our college:");
-					   company=s.nextInt();
-				   }
-				   System.out.println("Total number of companies visited at our college for current year:"+company);
-				   System.out.println("---Thank you features are updated---");
-				   break;
-				   
-			   }
-			   
+			   interfaceExtend.collegeFeatures();
 			   break;
 		   case 2:
 			   System.out.println("---Thank you No features are added---");
@@ -119,15 +73,36 @@ public class CollegeAdminUser {
 			   details.setRollNumber(details.rollNumber);
 			   System.out.println("Please enter the  student name to insert into database:");
 			   details.studentName=s.next();
+			   while(!(details.studentName.matches("^[a-zA-Z]{4,}$")))
+			   {
+				   System.err.println("Please enter the  student name  again to insert into database:");
+				   details.studentName=s.next();
+			   }
 			   details.setStudentName(details.studentName);
 			   System.out.println("Please enter the course to insert into database:");
 			   details.course=s.next();
+			   while(!(details.course.matches("^[a-zA-Z]{2,}$")))
+			   {
+				   System.err.println("Please enter the course again to  insert into database:");
+				   details.course=s.next();
+			   }
 			   details.setCourse(details.course);
+			   
 			   System.out.println("Please enter the department to insert into database:");
 			   details.department=s.next();
+			   while(!(details.department.matches("^[a-zA-Z]{2,}$")))
+			   {
+				   System.out.println("Please enter the department again to insert into database:");
+				   details.department=s.next();
+			   }
 			   details.setDepartment(details.department);
 			   System.out.println("Please enter the year of pursuing to insert into database:");
 			   details.yearOfPursuing=s.next();
+			   while(!(details.yearOfPursuing.matches("^[a-zA-Z]{1,}$")))
+			   {
+				   System.err.println("Please enter the year of pursuing to insert into database:");
+				   details.yearOfPursuing=s.next();   
+			   }
 			   details.setYearOfPursuing(details.yearOfPursuing);
 			   System.out.println("Please enter the attendance percentage to insert into database:");
 			   details.attendancePercentage=s.nextInt();
@@ -139,12 +114,27 @@ public class CollegeAdminUser {
 			   details.setAttendancePercentage(details.attendancePercentage);
 			   System.out.println("Please enter the remaining college fees to insert into database:");
 			   details.remainingCollegeFees=s.nextLong();
+			   if(details.remainingCollegeFees<0)
+			   {
+				   System.err.println("Please enter the remaining college fees again to insert into database:");
+				   details.remainingCollegeFees=s.nextLong();
+			   }
 			   details.setRemainingCollegeFees(details.remainingCollegeFees);
 			   System.out.println("Please enter the remaining book fees to insert into database:");
 			   details.remainingBookFees=s.nextLong();
+			   if(details.remainingBookFees<0)
+			   {
+				   System.err.println("Please enter the remaining book fees again to insert into database:");
+				   details.remainingBookFees=s.nextLong();
+			   }
 			   details.setRemainingBookFees(details.remainingBookFees);
 			   System.out.println("Please enter the remaining exam fees to insert into database:");
 			   details.remainingExamFees=s.nextInt();
+			   if(details.remainingExamFees<0)
+			   {
+				   System.err.println("Please enter the remaining exam fees again to insert into database:");
+				   details.remainingExamFees=s.nextInt();
+			   }
 			   details.setRemainingExamFees(details.remainingExamFees);
 			   DataBase.insertStudent(details.getRollNumber(),details.getStudentName(), details.getCourse(), details.getDepartment(),details.getYearOfPursuing(), details.getAttendancePercentage(), details.getRemainingCollegeFees(), details.getRemainingBookFees(),details.getRemainingExamFees());	
 			   break;
@@ -160,15 +150,35 @@ public class CollegeAdminUser {
 			   details.setRollNumber(details.rollNumber);
 			   System.out.println("Please enter the  student name to update into database:");
 			   details.studentName=s.next();
+			   while(!(details.studentName.matches("^[a-zA-Z]{4,}$")))
+			   {
+				   System.err.println("Please enter the  student name  again to insert into database:");
+				   details.studentName=s.next();
+			   }
 			   details.setStudentName(details.studentName);
 			   System.out.println("Please enter the course to update into database:");
 			   details.course=s.next();
+			   while(!(details.course.matches("^[a-zA-Z]{2,}$")))
+			   {
+				   System.err.println("Please enter the course again to  insert into database:");
+				   details.course=s.next();
+			   }
 			   details.setCourse(details.course);
 			   System.out.println("Please enter the department to update into database:");
 			   details.department=s.next();
+			   while(!(details.department.matches("^[a-zA-Z]{2,}$")))
+			   {
+				   System.out.println("Please enter the department again to insert into database:");
+				   details.department=s.next();
+			   }
 			   details.setDepartment(details.department);
 			   System.out.println("Please enter the year of pursuing to update into database:");
 			   details.yearOfPursuing=s.next();
+			   while(!(details.yearOfPursuing.matches("^[a-zA-Z]{1,}$")))
+			   {
+				   System.err.println("Please enter the year of pursuing to insert into database:");
+				   details.yearOfPursuing=s.next();   
+			   }
 			   details.setYearOfPursuing(details.yearOfPursuing);
 			   System.out.println("Please enter the attendance percentage to update into database:");
 			   details.attendancePercentage=s.nextInt();
@@ -180,12 +190,27 @@ public class CollegeAdminUser {
 			   details.setAttendancePercentage(details.attendancePercentage);
 			   System.out.println("Please enter the remaining college fees to update into database:");
 			   details.remainingCollegeFees=s.nextLong();
+			   if(details.remainingCollegeFees<0)
+			   {
+				   System.err.println("Please enter the remaining college fees again to insert into database:");
+				   details.remainingCollegeFees=s.nextLong();
+			   }
 			   details.setRemainingCollegeFees(details.remainingCollegeFees);
 			   System.out.println("Please enter the remaining book fees to update into database:");
 			   details.remainingBookFees=s.nextLong();
+			   if(details.remainingBookFees<0)
+			   {
+				   System.err.println("Please enter the remaining book fees again to insert into database:");
+				   details.remainingBookFees=s.nextLong();
+			   }
 			   details.setRemainingBookFees(details.remainingBookFees);
 			   System.out.println("Please enter the remaining exam fees to update into database:");
 			   details.remainingExamFees=s.nextInt();
+			   if(details.remainingExamFees<0)
+			   {
+				   System.err.println("Please enter the remaining exam fees again to insert into database:");
+				   details.remainingExamFees=s.nextInt();
+			   }
 			   details.setRemainingExamFees(details.remainingExamFees);
 			   DataBase.updateStudent(details.getRollNumber(),details.getStudentName(), details.getCourse(), details.getDepartment(),details.getYearOfPursuing(), details.getAttendancePercentage(), details.getRemainingCollegeFees(), details.getRemainingBookFees(),details.getRemainingExamFees());		
 			   break;
@@ -204,7 +229,7 @@ public class CollegeAdminUser {
 			default:
 				System.out.println("Enter correct choice");
 		
-		abstractextend.thankYou();
+		interfaceExtend.thankYou();
 		}
 		
 		}	
@@ -308,27 +333,51 @@ public class CollegeAdminUser {
 	   
 		System.out.println("---Welcome User---");
 		
-		System.out.println("Enter the choice 1.view student details \n 2.pay college fees");
+		System.out.println("Enter the choice 1.view student details \n 2.pay college fees \n 3.pay book fees \n 4.pay exam fees \n 5.placement and other related details");
 		cm.selectOption=scan.nextInt();
 		switch(cm.selectOption)
 		{
 		case 1:
 			System.out.println("Enter the roll number:");
 			student.rollNumber=scan.nextInt();
+			if(student.rollNumber<0)
+			{
+				System.err.println("Enter the roll number:");
+				student.rollNumber=scan.nextInt();
+			}
 			student.setRollNumber(student.rollNumber);
 		DataBase.studentDetails(student.getRollNumber());
 		break;
 		case 2:
 			System.out.println("Enter the roll number:");
 			student.rollNumber=scan.nextInt();
+			if(student.rollNumber<0)
+			{
+				System.err.println("Enter the roll number:");
+				student.rollNumber=scan.nextInt();
+			}
 			student.setRollNumber(student.rollNumber);
 			System.out.println("Enter the student name:");
 			student.studentName=scan.next();
+			while(!(student.studentName.matches("^[a-zA-Z]{4,}$")))
+			{
+				System.err.println("Enter the student name:");
+				student.studentName=scan.next();
+			}
 			student.setStudentName(student.studentName);
 			System.out.println("Enter the college fees you wish to pay:");
 			long fees=scan.nextLong();
+			if(fees<0)
+			{
+				System.out.println("Enter the college fees you wish to pay:");
+				 fees=scan.nextLong();
+			}
 			DataBase.updateFees(student.getRollNumber(),student.getStudentName() ,fees);
 			break;
+		case 3:
+			
+		case 5:
+			DataBase.collegeDetailsView();
 		}
 		abstractextend.thankYou();		
 	}

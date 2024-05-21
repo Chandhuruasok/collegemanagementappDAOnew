@@ -9,6 +9,10 @@ public class StudentDetails {
 	public int attendancePercentage;
 	public long remainingCollegeFees,remainingBookFees;
 	public int remainingExamFees;
+	public int placementPercentage;
+	public int collegeRanking;
+	public int companies;
+	public int year;
 	public StudentDetails()
 	{
 		
@@ -16,8 +20,8 @@ public class StudentDetails {
 	public int getRollNumber() {
 		return rollNumber;
 	}
-	public void setRollNumber(int rollNumber) {
-		this.rollNumber = rollNumber;
+	public static  void setRollNumber(int rollNumber) {
+		rollNumber = rollNumber;
 	}
 	public String getStudentName() {
 		return studentName;
@@ -67,9 +71,34 @@ public class StudentDetails {
 	public void setRemainingExamFees(int remainingExamFees) {
 		this.remainingExamFees = remainingExamFees;
 	}
+	public int getPlacementPercentage() {
+		return placementPercentage;
+	}
+	public void setPlacementPercentage(int placementPercentage) {
+		this.placementPercentage = placementPercentage;
+	}
+	public int getCollegeRanking() {
+		return collegeRanking;
+	}
+	public void setCollegeRanking(int collegeRanking) {
+		this.collegeRanking = collegeRanking;
+	}
+	public int getCompanies() {
+		return companies;
+	}
+	public void setCompanies(int companies) {
+		this.companies = companies;
+	}
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
 	public StudentDetails(int rollNumber, String studentName, String course, String department, String yearOfPursuing,
-			int attendancePercentage, long remainingCollegeFees, long remainingBookFees, int remainingExamFees) {
-		
+			int attendancePercentage, long remainingCollegeFees, long remainingBookFees, int remainingExamFees,
+			int placementPercentage, int collegeRanking, int companies, int year) {
+		super();
 		this.rollNumber = rollNumber;
 		this.studentName = studentName;
 		this.course = course;
@@ -79,14 +108,20 @@ public class StudentDetails {
 		this.remainingCollegeFees = remainingCollegeFees;
 		this.remainingBookFees = remainingBookFees;
 		this.remainingExamFees = remainingExamFees;
+		this.placementPercentage = placementPercentage;
+		this.collegeRanking = collegeRanking;
+		this.companies = companies;
+		this.year = year;
 	}
 	@Override
 	public String toString() {
 		return "StudentDetails [rollNumber=" + rollNumber + ", studentName=" + studentName + ", course=" + course
 				+ ", department=" + department + ", yearOfPursuing=" + yearOfPursuing + ", attendancePercentage="
 				+ attendancePercentage + ", remainingCollegeFees=" + remainingCollegeFees + ", remainingBookFees="
-				+ remainingBookFees + ", remainingExamFees=" + remainingExamFees + "]";
+				+ remainingBookFees + ", remainingExamFees=" + remainingExamFees + ", placementPercentage="
+				+ placementPercentage + ", collegeRanking=" + collegeRanking + ", companies=" + companies + ", year="
+				+ year + "]";
 	}
 	
-
+	
 }

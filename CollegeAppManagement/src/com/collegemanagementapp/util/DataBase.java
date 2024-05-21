@@ -1,5 +1,5 @@
 package com.collegemanagementapp.util;
-
+import com.collegemanagementapp.util.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.collegemanagementapp.model.CollegeManagementApp;
-import com.mysql.cj.jdbc.result.ResultSetMetaData;
+import com.collegemanagementapp.model.StudentDetails;
 public class DataBase 
 {
 	
@@ -77,11 +77,11 @@ public class DataBase
             CollegeManagementApp collegemanage=new CollegeManagementApp();
             ArrayList existingList = new ArrayList();
             Connection connection =Util.getConnection();
-            String query = "select roll_no from collegeapp";
+            String query = "select rollNumber from adminUpdateTable1";
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                int userName3 = resultSet.getInt("roll_no");
+                int userName3 = resultSet.getInt("rollNumber");
                 existingList.add(userName3);
             }
             while(true) {
@@ -89,7 +89,7 @@ public class DataBase
                     System.out.println("roll number already exists:");
                     System.out.println("Enter the roll number:");
                     rollNo = scanner.nextInt();
-                    collegemanage.setRollNo(rollNo);
+                    StudentDetails.setRollNumber(rollNo);
                     flag = false;
                 } else {
                     System.out.println("user name available for Registration");
@@ -211,5 +211,55 @@ public class DataBase
        int row = ps.executeUpdate();
        System.out.println("Fees updated : "+row );
    }
+public static void collegeDetailsInsert(int placement, int collegeRanking,int companiesVisited,int year) throws ClassNotFoundException, SQLException {
+	   
+       Connection connection=Util.getConnection();
+       String insertTable="insert into collegeDetails values(?,?,?,?)";
+   	PreparedStatement prepare=connection.prepareStatement(insertTable);
+   	prepare.setInt(1,placement);
+   	prepare.setInt(2,collegeRanking);
+   	prepare.setInt(3,companiesVisited);
+   	prepare.setInt(4,year);
+   	int row=prepare.executeUpdate();
+   	System.out.println("inserted data:"+row);
+   	connection.close();
+   }
+
+	public static void collegeDetailsupdate(int placement, int collegeRanking,int companiesVisited,int year) throws ClassNotFoundException,SQLException
+   {
+   	Connection connection=Util.getConnection();
+   	String updateTable="update collegeDetails  set placement=?,collegeRanking=? ,totalCompaniesVisited=? where YearUpdated=?";
+   	PreparedStatement prepare=connection.prepareStatement(updateTable);
+   	
+   	prepare.setInt(1,placement);
+   	prepare.setInt(2,collegeRanking);
+   	prepare.setInt(3,companiesVisited);
+   	prepare.setInt(4,year);
+   	
+   	int row=prepare.executeUpdate();
+   	System.out.println("updated data:"+row);
+   	connection.close();
+   }
+	public static void collegeDetailsView() throws ClassNotFoundException, SQLException
+    {
+        Connection connection=Util.getConnection();
+        String query="select placement,collegeRanking,totalCompaniesVisited,YearUpdated from collegeDetails";
+        PreparedStatement ps = connection.prepareStatement(query);
+        ResultSet resultSet = ps.executeQuery();
+        java.sql.ResultSetMetaData rsmd=resultSet.getMetaData();
+        for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+            System.out.printf("%-21s", rsmd.getColumnName(i)); 
+        }
+        System.out.println(); 
+
+        
+        while (resultSet.next()) {
+            for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+                String value = resultSet.getString(i);
+                System.out.printf("%-23s", value); 
+            }
+            System.out.println(); 
+        }
+}
 }
 
