@@ -189,7 +189,7 @@ public class DataBase
                     System.out.println(); 
                 }
 }
-   public static void updateFees(int rollNo, String name,long fee) throws ClassNotFoundException, SQLException {
+   public static void updateCollegeFees(int rollNo, String name,long fee) throws ClassNotFoundException, SQLException {
 	   
        Connection connection=Util.getConnection();
        long remainingFees=0;
@@ -211,6 +211,50 @@ public class DataBase
        int row = ps.executeUpdate();
        System.out.println("Fees updated : "+row );
    }
+public static void updateBookFees(int rollNo, String name,long bookFee) throws ClassNotFoundException, SQLException {
+	   
+       Connection connection=Util.getConnection();
+       long remainingBookFees=0;
+       long balanceBookFees=0;
+       String query="select remainingBookFees from adminUpdateTable1 where studentName=? and rollNumber=? ";
+       PreparedStatement ps = connection.prepareStatement(query);
+       ps.setString(1, name);
+       ps.setInt(2, rollNo);
+       ResultSet resultSet = ps.executeQuery();
+       while(resultSet.next()) {
+    	   remainingBookFees= resultSet.getLong("remainingBookFees");
+    	   balanceBookFees =remainingBookFees-bookFee;
+       }
+       String query1="update adminUpdateTable1 set remainingBookFees=? where studentName=? and rollNumber=? ";
+       ps = connection.prepareStatement(query1);
+       ps.setLong(1, balanceBookFees);
+       ps.setString(2, name);
+       ps.setInt(3, rollNo);
+       int row = ps.executeUpdate();
+       System.out.println("Fees updated : "+row );
+   }
+public static void updateExamFees(int rollNo, String name,int bookFee) throws ClassNotFoundException, SQLException {
+	   
+    Connection connection=Util.getConnection();
+    long remainingExamFees=0;
+    long balanceExamFees=0;
+    String query="select remainingExamFees from adminUpdateTable1 where studentName=? and rollNumber=? ";
+    PreparedStatement ps = connection.prepareStatement(query);
+    ps.setString(1, name);
+    ps.setInt(2, rollNo);
+    ResultSet resultSet = ps.executeQuery();
+    while(resultSet.next()) {
+ 	   remainingExamFees= resultSet.getLong("remainingExamFees");
+ 	   balanceExamFees =remainingExamFees-bookFee;
+    }
+    String query1="update adminUpdateTable1 set remainingExamFees=? where studentName=? and rollNumber=? ";
+    ps = connection.prepareStatement(query1);
+    ps.setLong(1, balanceExamFees);
+    ps.setString(2, name);
+    ps.setInt(3, rollNo);
+    int row = ps.executeUpdate();
+    System.out.println("Fees updated : "+row );
+}
 public static void collegeDetailsInsert(int placement, int collegeRanking,int companiesVisited,int year) throws ClassNotFoundException, SQLException {
 	   
        Connection connection=Util.getConnection();

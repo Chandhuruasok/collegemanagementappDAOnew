@@ -81,7 +81,7 @@ public class CollegeAdminUser {
 			   details.setStudentName(details.studentName);
 			   System.out.println("Please enter the course to insert into database:");
 			   details.course=s.next();
-			   while(!(details.course.matches("^[a-zA-Z]{2,}$")))
+			   while(!(details.course.matches("^[a-zA-Z]{1,}$")))
 			   {
 				   System.err.println("Please enter the course again to  insert into database:");
 				   details.course=s.next();
@@ -372,10 +372,62 @@ public class CollegeAdminUser {
 				System.out.println("Enter the college fees you wish to pay:");
 				 fees=scan.nextLong();
 			}
-			DataBase.updateFees(student.getRollNumber(),student.getStudentName() ,fees);
+			DataBase.updateCollegeFees(student.getRollNumber(),student.getStudentName() ,fees);
 			break;
 		case 3:
+			System.out.println("Enter the roll number:");
+			student.rollNumber=scan.nextInt();
+			if(student.rollNumber<0)
+			{
+				System.err.println("Enter the roll number:");
+				student.rollNumber=scan.nextInt();
+			}
+			student.setRollNumber(student.rollNumber);
+			System.out.println("Enter the student name:");
+			student.studentName=scan.next();
+			while(!(student.studentName.matches("^[a-zA-Z]{4,}$")))
+			{
+				System.err.println("Enter the student name:");
+				student.studentName=scan.next();
+			}
+			student.setStudentName(student.studentName);
+			System.out.println("Enter the book fees you wish to pay:");
+			long bookFees=scan.nextLong();
+			if(bookFees<0)
+			{
+				System.out.println("Enter the book fees you wish to pay:");
+				 bookFees=scan.nextLong();
+			}
 			
+			DataBase.updateBookFees(student.getRollNumber(),student.getStudentName() ,bookFees);
+			break;
+		case 4:
+			System.out.println("Enter the roll number:");
+			student.rollNumber=scan.nextInt();
+			if(student.rollNumber<0)
+			{
+				System.err.println("Enter the roll number:");
+				student.rollNumber=scan.nextInt();
+			}
+			student.setRollNumber(student.rollNumber);
+			System.out.println("Enter the student name:");
+			student.studentName=scan.next();
+			while(!(student.studentName.matches("^[a-zA-Z]{4,}$")))
+			{
+				System.err.println("Enter the student name:");
+				student.studentName=scan.next();
+			}
+			student.setStudentName(student.studentName);
+			System.out.println("Enter the book fees you wish to pay:");
+			int examFees=scan.nextInt();
+			if(examFees<0)
+			{
+				System.out.println("Enter the book fees you wish to pay:");
+				 bookFees=scan.nextLong();
+			}
+			
+			DataBase.updateExamFees(student.getRollNumber(),student.getStudentName() ,examFees);
+			break;
 		case 5:
 			DataBase.collegeDetailsView();
 		}
